@@ -1,0 +1,44 @@
+.to-do-form {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10em;
+}
+#task-list {
+    margin: 5%;
+    background-color: rgb(250, 252, 252);
+    text-align: center;
+}
+.search {
+    background-color: white;
+    margin: 10%;
+    text-align: center;
+}
+.header {
+    background-color: rgb(49, 47, 47);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: white;
+    height: 14%;
+    
+}
+
+.button {
+    color: white;
+    background-color: rgb(49, 47, 47);
+    border-radius: 100em;
+}
+#task {
+    background-color: rgb(230, 246, 245);
+    margin: 10%;
+    
+}
+
+#searchTask {
+    border-radius: 4em;
+    border-style: none;
+    background-color: rgb(222, 247, 239);
+    color: rgb(1, 35, 28);
+    height: 7%;
+    padding: 1em;
+}

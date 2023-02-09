@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+    <title>To Do List</title>
+    <link rel = "stylesheet" type = "text/css" href = "css.css">
+    <script>
+        var tasks = [];
+        function show() {
+            var taskList = document.getElementById('task-list');
+            taskList.innerHTML = "";
+            tasks.forEach(task => {
+                taskList.innerHTML += task + "&nbsp <button class = \"button\" onClick = \"removeToDo('" + task + "')\">-</button> &nbsp <input type = \"checkbox\" id = \"check\" onClick = \"markAsDone('" + task + "')\"> <br>";
+            })
+        }
+        function addToDo() {
+            var task = document.getElementById('task').value;
+            if(task.length) {
+                tasks.push(task);
+            }
+            console.log(tasks);
+            show();
+
+        }
+        function removeToDo(task) {
+            // tasks = tasks.filter(t => t !== task);
+            var temp_tasks = [];
+            var temp = false;
+            tasks.forEach(t => {
+                if(t == task) {
+                    if(temp == false) {
+                        temp = true;
+                    }
+                    else {
+                        temp_tasks.push(t);
+                    }
+                }
+                else {
+                    temp_tasks.push(t);
+                }
+            })
+            tasks = temp_tasks;
+            console.log(tasks);
+            show();
+        }
+        function searchToDo() {
+            var str = document.getElementById('searchTask').value;
+            if(str == "") {
+                show();
+            }
+            else {
+                var taskList = document.getElementById('task-list');
+                taskList.innerHTML = "";
+                tasks.forEach(task => {
+                    if(task.includes(str)) {
+                        taskList.innerHTML += task + "&nbsp <button class = \"button\" onClick = \"removeToDo('" + task + "')\">-</button> &nbsp <input type = \"checkbox\" id = \"check\" onClick = \"markAsDone('" + task + "')\"> <br>";
+                    }
+                })
+            }
+        }
+        function markAsDone(task) {
+
+            var checkBox = document.getElementById('check');
+            var taskList = document.getElementById('task-list');
+            var found = false;
+            taskList.innerHTML = "";
+            tasks.forEach(t => {
+                if(t == task) {
+                    if(found) {
+                        taskList.innerHTML += task + "&nbsp <button class = \"button\" onClick = \"removeToDo('" + task + "')\">-</button> &nbsp <input type = \"checkbox\" id = \"check\" onClick = \"markAsDone('" + task + "')\"> <br>";
+                    }
+                    else {
+                        found = true;
+                        taskList.innerHTML += "<s>" + t + "</s>" + "&nbsp <button class = \"button\" onClick = \"removeToDo('" + task + "')\">-</button> &nbsp <input type = \"checkbox\" id = \"check\" onClick = \"markAsDone('" + task + "')\"> <br>";
+                    }
+                }
+                else {
+                    taskList.innerHTML += t + "&nbsp <button class = \"button\" onClick = \"removeToDo('" + task + "')\">-</button> &nbsp <input type = \"checkbox\" id = \"check\" onClick = \"markAsDone('" + task + "')\"> <br>";
+                }
+            })
+            
+        }
+
+    </script>
+</head> 
+<body>
+
+    <div class = "todo-form">
+        <h1 class = "header">To Do List</h1>
+        <input type = "text" id = "task">
+        <button onClick = "addToDo()" class = "button">
+            +
+        </button>
+    </div>
+    <div id = "task-list">
+
+    </div>
+    <div class = "search">
+        Search: <input type = "text" id = "searchTask" onkeyup="searchToDo()">
+    </div>
+    <div>
+
+    </div>
+</body>
+</html>
